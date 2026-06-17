@@ -28,6 +28,9 @@
 :root {
   /* Palette */
   --plaster:  #F4F1EC; /* fond principal — blanc plâtre chaud */
+  /* Photo de fond du héro — déposer le fichier dans assets/hero.jpg.
+     Tant que le fichier est absent, le dégradé de secours (.hero__bg) s'affiche. */
+  --hero-photo: url('assets/hero.jpg');
   --terra:    #B5673A; /* accent signature — terracotta/bronze (logo) */
   --graphite: #2A2724; /* texte principal — graphite chaud */
   --mortar:   #E8E2D8; /* sections alternées — mortier clair */
@@ -253,16 +256,38 @@ p { margin: 0; }
   padding-bottom: clamp(72px, 10vw, 120px);
   overflow: hidden;
 }
+/* Fond photo + overlay de lisibilité.
+   Empilement (du dessus vers le dessous) :
+   1. overlay plâtre dégradé gauche->droite (garde le texte lisible)
+   2. la photo de chantier (--hero-photo)
+   3. dégradé de secours mortier->plâtre si la photo est absente */
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(100deg,
+      rgba(244, 241, 236, 0.97) 0%,
+      rgba(244, 241, 236, 0.86) 36%,
+      rgba(244, 241, 236, 0.45) 72%,
+      rgba(244, 241, 236, 0.25) 100%),
+    var(--hero-photo),
+    linear-gradient(135deg, var(--mortar) 0%, var(--plaster) 70%);
+  background-size: cover, cover, cover;
+  background-position: center, center, center;
+  background-repeat: no-repeat;
+}
 .hero__placo {
   position: absolute;
   inset: auto 0 0 0;
+  z-index: 1;
   height: 55%;
   background-image: var(--placo-pattern);
   -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 100%);
   mask-image: linear-gradient(to top, #000 0%, transparent 100%);
   pointer-events: none;
 }
-.hero__inner { position: relative; max-width: 760px; }
+.hero__inner { position: relative; z-index: 2; max-width: 760px; }
 .hero h1 {
   margin: 18px 0 0;
 }
@@ -669,6 +694,7 @@ p { margin: 0; }
      HERO
      ===================================================================== -->
 <section class="hero" id="hero">
+  <div class="hero__bg" aria-hidden="true"></div>
   <div class="hero__placo" aria-hidden="true"></div>
   <div class="container hero__inner">
     <span class="eyebrow reveal">Isolation · Placo · Décoration · Le Mans (72)</span>
