@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ak_Home — Isolation, Placo & Décoration intérieure · Le Mans (72)</title>
+<meta name="description" content="Ak_Home, entreprise de second œuvre au Mans (72) : isolation, placo et décoration intérieure. Neuf et rénovation dans toute la Sarthe. Devis gratuit sous 48h." />
+<meta name="theme-color" content="#F4F1EC" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Ak_Home — Isolation, Placo & Décoration intérieure · Le Mans" />
+<meta property="og:description" content="Le second œuvre fait dans les règles. Isolation, placo et décoration intérieure au Mans et dans toute la Sarthe." />
+<meta property="og:locale" content="fr_FR" />
+
+<style>
+/* =========================================================================
+   AK_HOME — Site vitrine one-page
+   Isolation · Placo · Décoration intérieure — Le Mans (72)
+   Zéro dépendance externe (hors Google Fonts). Aucun framework.
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Hanken+Grotesk:wght@400;500;600&display=swap');
+
+/* -------------------------------------------------------------------------
+   1. TOKENS — Palette & variables
+   ------------------------------------------------------------------------- */
+:root {
+  /* Palette */
+  --plaster:  #F4F1EC; /* fond principal — blanc plâtre chaud */
+  --terra:    #B5673A; /* accent signature — terracotta/bronze (logo) */
+  --graphite: #2A2724; /* texte principal — graphite chaud */
+  --mortar:   #E8E2D8; /* sections alternées — mortier clair */
+  --ash:      #7D7568; /* texte secondaire — gris cendré chaud */
+  --copper:   #D68C5C; /* hover states — cuivre clair */
+
+  /* Typo */
+  --font-display: 'Sora', system-ui, sans-serif;
+  --font-body: 'Hanken Grotesk', system-ui, sans-serif;
+
+  /* Rythme */
+  --maxw: 1180px;
+  --gutter: clamp(20px, 5vw, 48px);
+  --section-y: clamp(64px, 9vw, 120px);
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Motif plaques de placo (rectangles ~120x250 à l'échelle) — stroke terra 0.04 */
+  --placo-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='250' viewBox='0 0 240 250'%3E%3Cg fill='none' stroke='%23B5673A' stroke-opacity='0.04' stroke-width='1.5'%3E%3Crect x='0' y='0' width='120' height='250'/%3E%3Crect x='120' y='0' width='120' height='250'/%3E%3Cline x1='0' y1='125' x2='120' y2='125'/%3E%3Cline x1='120' y1='62.5' x2='240' y2='62.5'/%3E%3Cline x1='120' y1='187.5' x2='240' y2='187.5'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* -------------------------------------------------------------------------
+   2. RESET & BASE
+   ------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 86px; /* compense le header fixe lors des ancres */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--graphite);
+  background: var(--plaster);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+p { margin: 0; }
+
+/* Layout helper */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section { padding-block: var(--section-y); position: relative; }
+.section--mortar { background: var(--mortar); }
+.section--placo { background: var(--mortar); background-image: var(--placo-pattern); }
+
+/* Eyebrow / label */
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--terra);
+  margin: 0 0 14px;
+  display: inline-block;
+}
+.eyebrow--ash { color: var(--ash); }
+
+.section-head { max-width: 640px; margin-bottom: clamp(36px, 5vw, 56px); }
+.section-head h2 {
+  font-size: clamp(28px, 4.4vw, 44px);
+  color: var(--graphite);
+}
+.section-head p {
+  margin-top: 16px;
+  color: var(--ash);
+  font-size: 17px;
+  max-width: 520px;
+}
+
+/* Boutons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 14px 32px;
+  border-radius: var(--radius-s);
+  border: 1.5px solid transparent;
+  transition: background 0.25s var(--ease), color 0.25s var(--ease),
+              border-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.btn--primary { background: var(--terra); color: var(--plaster); }
+.btn--primary:hover { background: var(--copper); }
+.btn--ghost { background: transparent; border-color: var(--graphite); color: var(--graphite); }
+.btn--ghost:hover { background: var(--graphite); color: var(--plaster); }
+.btn--full { width: 100%; }
+
+/* -------------------------------------------------------------------------
+   3. HEADER FIXE
+   ------------------------------------------------------------------------- */
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  background: transparent;
+  transition: background 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.header.is-scrolled {
+  background: rgba(244, 241, 236, 0.95);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 rgba(42, 39, 36, 0.06);
+}
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand__mark { color: var(--terra); flex: none; }
+.brand__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 19px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--graphite);
+}
+
+.nav { display: flex; align-items: center; gap: 32px; }
+.nav__link {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ash);
+  transition: color 0.25s var(--ease);
+  position: relative;
+}
+.nav__link:hover { color: var(--terra); }
+.nav__link.is-active { color: var(--terra); }
+
+.header .btn { padding: 11px 22px; font-size: 13.5px; }
+
+/* Hamburger */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: 0;
+  padding: 8px;
+}
+.burger span {
+  width: 24px; height: 2px;
+  background: var(--graphite);
+  border-radius: 2px;
+  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+
+/* Overlay mobile */
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: var(--plaster);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-12px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease), visibility 0.35s;
+}
+.mobile-nav.is-open { opacity: 1; visibility: visible; transform: translateY(0); }
+.mobile-nav a {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 26px;
+  color: var(--graphite);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), color 0.25s var(--ease);
+}
+.mobile-nav.is-open a { opacity: 1; transform: translateY(0); }
+.mobile-nav a:hover { color: var(--terra); }
+.mobile-nav .btn { font-size: 16px; margin-top: 8px; }
+
+/* -------------------------------------------------------------------------
+   4. HERO
+   ------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  padding-top: clamp(120px, 16vw, 180px);
+  padding-bottom: clamp(72px, 10vw, 120px);
+  overflow: hidden;
+}
+.hero__placo {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 55%;
+  background-image: var(--placo-pattern);
+  -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 100%);
+  mask-image: linear-gradient(to top, #000 0%, transparent 100%);
+  pointer-events: none;
+}
+.hero__inner { position: relative; max-width: 760px; }
+.hero h1 {
+  margin: 18px 0 0;
+}
+.hero h1 .line1 {
+  display: block;
+  font-size: clamp(28px, 5vw, 50px);
+  color: var(--graphite);
+  line-height: 1.05;
+}
+.hero h1 .line2 {
+  display: block;
+  font-size: clamp(40px, 9vw, 88px);
+  color: var(--terra);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+.hero__sub {
+  margin-top: 24px;
+  max-width: 480px;
+  color: var(--ash);
+  font-size: 18px;
+}
+.hero__cta {
+  margin-top: 36px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.badges {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--mortar);
+  color: var(--ash);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 9px 18px;
+  border-radius: 20px;
+}
+
+/* -------------------------------------------------------------------------
+   5. PRESTATIONS — grille 2x2
+   ------------------------------------------------------------------------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.card {
+  background: var(--plaster);
+  border-radius: var(--radius-m);
+  border-top: 3px solid var(--terra);
+  padding: 34px 32px;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-top-color 0.3s var(--ease);
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px -18px rgba(42, 39, 36, 0.28);
+  border-top-color: var(--copper);
+}
+.card__icon { color: var(--terra); margin-bottom: 18px; }
+.card h3 { font-size: 21px; font-weight: 600; color: var(--graphite); margin-bottom: 10px; }
+.card p { color: var(--ash); font-size: 15.5px; }
+
+/* -------------------------------------------------------------------------
+   6. PROCESSUS — 4 étapes
+   ------------------------------------------------------------------------- */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  counter-reset: step;
+}
+.step { position: relative; }
+.step__num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--plaster);
+  background: var(--terra);
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.step h3 { font-size: 18px; font-weight: 600; color: var(--graphite); margin-bottom: 8px; }
+.step p { color: var(--ash); font-size: 15px; }
+.step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 21px;
+  left: 54px;
+  right: -20px;
+  height: 1px;
+  background: linear-gradient(to right, rgba(181,103,58,0.4), rgba(181,103,58,0.05));
+}
+
+/* -------------------------------------------------------------------------
+   7. RÉALISATIONS — galerie
+   ------------------------------------------------------------------------- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.shot {
+  position: relative;
+  background: var(--plaster);
+  border-radius: var(--radius-m);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 22px;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.shot:hover { transform: translateY(-3px); box-shadow: 0 16px 40px -18px rgba(42,39,36,0.25); }
+.shot__num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(56px, 9vw, 96px);
+  color: var(--terra);
+  opacity: 0.15;
+  line-height: 1;
+  align-self: flex-end;
+}
+.shot__label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14.5px;
+  color: var(--graphite);
+  position: relative;
+}
+.gallery-cta {
+  margin-top: 40px;
+  text-align: center;
+}
+.link-ig {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: var(--terra);
+  transition: color 0.25s var(--ease), gap 0.25s var(--ease);
+}
+.link-ig:hover { color: var(--copper); gap: 12px; }
+
+/* -------------------------------------------------------------------------
+   8. À PROPOS
+   ------------------------------------------------------------------------- */
+.about {
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  gap: clamp(36px, 6vw, 72px);
+  align-items: center;
+}
+.about__text p { color: var(--ash); line-height: 1.8; }
+.about__text p + p { margin-top: 18px; }
+.about__mentions {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.mention {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--terra);
+  border: 1px solid rgba(181,103,58,0.3);
+  border-radius: 20px;
+  padding: 7px 16px;
+}
+.about__media {
+  background: var(--mortar);
+  border-radius: var(--radius-m);
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: var(--placo-pattern);
+}
+.about__media svg { color: var(--terra); opacity: 0.35; }
+
+/* -------------------------------------------------------------------------
+   9. TÉMOIGNAGES
+   ------------------------------------------------------------------------- */
+.quotes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.quote {
+  background: var(--plaster);
+  border-radius: var(--radius-m);
+  border-left: 3px solid var(--terra);
+  padding: 30px 28px;
+  display: flex;
+  flex-direction: column;
+}
+.quote__stars { color: var(--terra); font-size: 14px; letter-spacing: 2px; margin-bottom: 14px; }
+.quote p { color: var(--graphite); font-size: 16px; line-height: 1.65; }
+.quote__author {
+  margin-top: 20px;
+  font-weight: 600;
+  font-size: 14.5px;
+  color: var(--ash);
+}
+
+/* -------------------------------------------------------------------------
+   10. CONTACT
+   ------------------------------------------------------------------------- */
+.contact { background: var(--graphite); }
+.contact .eyebrow { color: var(--copper); }
+.contact .section-head h2 { color: var(--plaster); }
+.contact .section-head p { color: rgba(244,241,236,0.7); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 32px;
+  align-items: start;
+}
+.channels {
+  background: rgba(181,103,58,0.08);
+  border: 1px solid rgba(181,103,58,0.2);
+  border-radius: var(--radius-m);
+  padding: 28px;
+}
+.channels h3 { color: var(--plaster); font-size: 19px; font-weight: 600; margin-bottom: 18px; }
+.channels .btn { margin-bottom: 22px; }
+.channel-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.channel-list li {
+  color: rgba(244,241,236,0.85);
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Formulaire */
+.form { display: grid; gap: 22px; }
+.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(244,241,236,0.6);
+}
+.field input,
+.field select,
+.field textarea {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--plaster);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(244,241,236,0.25);
+  padding: 12px 0;
+  transition: border-color 0.25s var(--ease);
+}
+.field textarea { resize: vertical; min-height: 96px; }
+.field input::placeholder,
+.field textarea::placeholder { color: rgba(244,241,236,0.4); }
+.field input:focus,
+.field select:focus,
+.field textarea:focus { outline: none; border-bottom-color: var(--copper); }
+.field select { appearance: none; cursor: pointer; }
+.field select option { color: var(--graphite); }
+
+/* -------------------------------------------------------------------------
+   11. FOOTER
+   ------------------------------------------------------------------------- */
+.footer {
+  background: var(--mortar);
+  border-top: 1px solid rgba(181,103,58,0.2);
+  text-align: center;
+  padding-block: 48px;
+}
+.footer__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--graphite);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.footer__tag { color: var(--ash); margin-top: 8px; font-size: 15px; }
+.footer__ig { display: inline-block; margin-top: 14px; color: var(--terra); font-weight: 600; transition: color 0.25s var(--ease); }
+.footer__ig:hover { color: var(--copper); }
+.footer__legal { margin-top: 22px; color: var(--ash); font-size: 13px; line-height: 1.8; }
+.footer__legal a { color: var(--terra); }
+
+/* -------------------------------------------------------------------------
+   12. SCROLL REVEAL
+   ------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+.reveal.revealed { opacity: 1; transform: translateY(0); }
+
+/* -------------------------------------------------------------------------
+   13. RESPONSIVE
+   ------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .steps { grid-template-columns: repeat(2, 1fr); row-gap: 36px; }
+  .step:not(:last-child)::after { display: none; }
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .nav, .header .btn--primary { display: none; }
+  .burger { display: flex; }
+  .cards { grid-template-columns: 1fr; }
+  .quotes { grid-template-columns: 1fr; }
+  .about { grid-template-columns: 1fr; }
+  .about__media { height: 280px; order: -1; }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 16px; }
+  .steps { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: 1fr; }
+  .form__row { grid-template-columns: 1fr; }
+  .hero__cta .btn { width: 100%; }
+}
+
+/* -------------------------------------------------------------------------
+   14. ACCESSIBILITÉ — reduced motion
+   ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+/* NB : le bloc ci-dessus est la seule exception tolérée à la règle "aucun
+   !important" — il sert exclusivement à neutraliser les animations pour les
+   utilisateurs sensibles au mouvement (recommandation WCAG / WAI). */
+
+:focus-visible { outline: 2px solid var(--terra); outline-offset: 3px; border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<!-- =====================================================================
+     HEADER
+     ===================================================================== -->
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="#hero" class="brand" aria-label="Ak_Home — accueil">
+      <!-- Icône maison épurée, esprit du logo existant -->
+      <svg class="brand__mark" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 11.5 12 4l9 7.5"/>
+        <path d="M5 10v9h14v-9"/>
+        <path d="M10 19v-5h4v5"/>
+      </svg>
+      <span class="brand__name">AKHOME72</span>
+    </a>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a class="nav__link" href="#prestations">Prestations</a>
+      <a class="nav__link" href="#realisations">Réalisations</a>
+      <a class="nav__link" href="#apropos">À propos</a>
+      <a class="nav__link" href="#contact">Contact</a>
+    </nav>
+
+    <a href="#contact" class="btn btn--primary">Devis gratuit</a>
+
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Overlay mobile -->
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <a href="#prestations">Prestations</a>
+  <a href="#realisations">Réalisations</a>
+  <a href="#apropos">À propos</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn--primary">Devis gratuit</a>
+</div>
+
+<main>
+
+<!-- =====================================================================
+     HERO
+     ===================================================================== -->
+<section class="hero" id="hero">
+  <div class="hero__placo" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <span class="eyebrow reveal">Isolation · Placo · Décoration · Le Mans (72)</span>
+    <h1 class="reveal">
+      <span class="line1">Le second œuvre,</span>
+      <span class="line2">fait dans les règles.</span>
+    </h1>
+    <p class="hero__sub reveal">
+      Isolation, placo et décoration intérieure. Neuf et rénovation,
+      au Mans et dans toute la Sarthe.
+    </p>
+    <div class="hero__cta reveal">
+      <a href="#contact" class="btn btn--primary">Demander un devis gratuit</a>
+      <a href="#realisations" class="btn btn--ghost">Voir nos réalisations</a>
+    </div>
+    <div class="badges reveal">
+      <span class="badge">✓ Devis gratuit</span>
+      <span class="badge">🏠 Neuf &amp; rénovation</span>
+      <span class="badge">⭐ Satisfaction client</span>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     PRESTATIONS
+     ===================================================================== -->
+<section class="section section--placo" id="prestations">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Nos prestations</span>
+      <h2>Un interlocuteur, tous les travaux.</h2>
+      <p>De l'isolation à la finition, on couvre l'ensemble de votre second œuvre intérieur.</p>
+    </div>
+
+    <div class="cards">
+      <!-- Isolation -->
+      <article class="card reveal">
+        <svg class="card__icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 7h18M3 12h18M3 17h18"/>
+          <path d="M7 4v16M14 4v16"/>
+        </svg>
+        <h3>Isolation</h3>
+        <p>Thermique et phonique, murs, sols et combles. Confort et économies d'énergie pour votre logement, neuf ou ancien.</p>
+      </article>
+
+      <!-- Placo -->
+      <article class="card reveal">
+        <svg class="card__icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="16" rx="1"/>
+          <path d="M12 4v16M3 12h18"/>
+        </svg>
+        <h3>Placo</h3>
+        <p>Cloisons, plafonds, doublage. Pose précise et finitions soignées pour des surfaces parfaitement droites, prêtes à peindre.</p>
+      </article>
+
+      <!-- Décoration -->
+      <article class="card reveal">
+        <svg class="card__icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 20h6"/>
+          <path d="M7 20v-5"/>
+          <path d="M5 15h9l5-9a2.5 2.5 0 0 0-4-3l-6 9"/>
+          <path d="M14 6l3 3"/>
+        </svg>
+        <h3>Décoration intérieure</h3>
+        <p>Peinture, finitions, agencement. La dernière étape qui révèle tout le travail structurel réalisé en amont.</p>
+      </article>
+
+      <!-- Neuf & Rénovation -->
+      <article class="card reveal">
+        <svg class="card__icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 3l7 7-4 4-7-7z"/>
+          <path d="M10 7L3 14v7h7l7-7"/>
+          <path d="M5 19l3-3"/>
+        </svg>
+        <h3>Neuf &amp; Rénovation</h3>
+        <p>Intervention sur construction neuve ou rénovation complète. Un accompagnement de A à Z, du gros œuvre à la finition.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     PROCESSUS
+     ===================================================================== -->
+<section class="section" id="processus">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow eyebrow--ash">Comment ça marche</span>
+      <h2>Simple et transparent.</h2>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step__num">1</span>
+        <h3>Visite &amp; diagnostic</h3>
+        <p>Déplacement sur site, évaluation précise des travaux et des contraintes techniques.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step__num">2</span>
+        <h3>Devis détaillé</h3>
+        <p>Chiffrage clair, gratuit et sans engagement, sous 48h après la visite.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step__num">3</span>
+        <h3>Réalisation</h3>
+        <p>Chantier soigné, délais respectés, suivi régulier de l'avancement des travaux.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step__num">4</span>
+        <h3>Réception</h3>
+        <p>Contrôle qualité final, livraison propre, votre satisfaction avant tout.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     RÉALISATIONS
+     ===================================================================== -->
+<section class="section section--placo" id="realisations">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Réalisations</span>
+      <h2>Quelques chantiers au Mans.</h2>
+    </div>
+
+    <div class="gallery">
+      <figure class="shot reveal">
+        <span class="shot__num">01</span>
+        <figcaption class="shot__label">Isolation phonique — Appartement Le Mans</figcaption>
+      </figure>
+      <figure class="shot reveal">
+        <span class="shot__num">02</span>
+        <figcaption class="shot__label">Aménagement combles — Maison Allonnes</figcaption>
+      </figure>
+      <figure class="shot reveal">
+        <span class="shot__num">03</span>
+        <figcaption class="shot__label">Cuisine sur mesure — Rénovation complète</figcaption>
+      </figure>
+      <figure class="shot reveal">
+        <span class="shot__num">04</span>
+        <figcaption class="shot__label">Cloisons placo — Local commercial</figcaption>
+      </figure>
+      <figure class="shot reveal">
+        <span class="shot__num">05</span>
+        <figcaption class="shot__label">Décoration intérieure — Maison neuve</figcaption>
+      </figure>
+      <figure class="shot reveal">
+        <span class="shot__num">06</span>
+        <figcaption class="shot__label">Doublage isolant — Rénovation énergétique</figcaption>
+      </figure>
+    </div>
+
+    <div class="gallery-cta reveal">
+      <a class="link-ig" href="https://www.instagram.com/ak_home72" target="_blank" rel="noopener">Voir plus sur Instagram →</a>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     À PROPOS
+     ===================================================================== -->
+<section class="section" id="apropos">
+  <div class="container about">
+    <div class="about__text reveal">
+      <span class="eyebrow eyebrow--ash">À propos</span>
+      <h2 style="font-size:clamp(28px,4.4vw,44px);margin-bottom:20px;">La satisfaction du client avant tout.</h2>
+      <p>
+        Ak_Home est une entreprise de second œuvre basée au Mans, spécialisée en
+        isolation, placo et décoration intérieure. Que ce soit pour une construction
+        neuve ou une rénovation complète, nous intervenons avec la même exigence :
+        un travail soigné, des délais respectés, et une vraie écoute de vos besoins.
+      </p>
+      <p>
+        Chaque chantier est différent — c'est pourquoi nous prenons le temps du
+        diagnostic avant de proposer un devis clair et détaillé.
+      </p>
+      <div class="about__mentions">
+        <span class="mention">Devis gratuit</span>
+        <span class="mention">Sarthe &amp; alentours</span>
+        <span class="mention">Neuf &amp; rénovation</span>
+      </div>
+    </div>
+    <div class="about__media reveal" aria-hidden="true">
+      <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11.5 12 4l9 7.5"/>
+        <path d="M5 10v9h14v-9"/>
+        <path d="M10 19v-5h4v5"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     TÉMOIGNAGES
+     ===================================================================== -->
+<section class="section section--mortar" id="temoignages">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Avis clients</span>
+      <h2>Ce qu'ils en disent.</h2>
+    </div>
+
+    <div class="quotes">
+      <blockquote class="quote reveal">
+        <div class="quote__stars" aria-label="5 étoiles sur 5">★★★★★</div>
+        <p>« Isolation des combles refaite entièrement, travail propre et rapide. Différence de confort immédiate l'hiver suivant. »</p>
+        <cite class="quote__author">— Nadège L., Le Mans</cite>
+      </blockquote>
+      <blockquote class="quote reveal">
+        <div class="quote__stars" aria-label="5 étoiles sur 5">★★★★★</div>
+        <p>« Cloisons et plafond placo pour notre extension, finitions impeccables, prêt à peindre directement. Très professionnel. »</p>
+        <cite class="quote__author">— Thomas G., Allonnes</cite>
+      </blockquote>
+      <blockquote class="quote reveal">
+        <div class="quote__stars" aria-label="5 étoiles sur 5">★★★★★</div>
+        <p>« Devis clair, chantier respecté au jour près, et le résultat est exactement ce qu'on voulait pour notre rénovation. »</p>
+        <cite class="quote__author">— Camille &amp; Hugo R., Le Mans</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     CONTACT
+     ===================================================================== -->
+<section class="section contact" id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Contact &amp; devis</span>
+      <h2>Parlons de votre projet.</h2>
+      <p>Devis gratuit · Le Mans et la Sarthe</p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Canaux directs -->
+      <div class="channels reveal">
+        <h3>Le plus rapide</h3>
+        <a class="btn btn--primary btn--full" href="https://www.instagram.com/ak_home72" target="_blank" rel="noopener">📸 DM sur Instagram @ak_home72</a>
+        <ul class="channel-list">
+          <li>📍 Le Mans (72)</li>
+          <li>⏱ Devis sous 48h</li>
+          <li>✓ Satisfaction garantie</li>
+        </ul>
+      </div>
+
+      <!-- Formulaire -->
+      <form class="form reveal" id="contactForm" novalidate>
+        <div class="form__row">
+          <div class="field">
+            <label for="name">Prénom &amp; Nom</label>
+            <input type="text" id="name" name="name" autocomplete="name" placeholder="Votre nom" required />
+          </div>
+          <div class="field">
+            <label for="phone">Téléphone</label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="06 00 00 00 00" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="vous@exemple.fr" required />
+        </div>
+
+        <div class="field">
+          <label for="project">Type de projet</label>
+          <select id="project" name="project">
+            <option value="isolation">Isolation</option>
+            <option value="placo">Placo</option>
+            <option value="decoration">Décoration intérieure</option>
+            <option value="neuf-renovation">Neuf &amp; rénovation complète</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="message">Description du projet</label>
+          <textarea id="message" name="message" placeholder="Parlez-nous de votre chantier, surface, délais souhaités…"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--full">Envoyer ma demande</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- =====================================================================
+     FOOTER
+     ===================================================================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__name">AKHOME72</div>
+    <div class="footer__tag">Isolation · Placo · Décoration intérieure</div>
+    <a class="footer__ig" href="https://www.instagram.com/ak_home72" target="_blank" rel="noopener">@ak_home72</a>
+    <div class="footer__legal">
+      © 2026 Ak_Home — Tous droits réservés · Le Mans (72)<br />
+      Site réalisé par <a href="https://paymentflow.fr" target="_blank" rel="noopener">Payment Flow</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+'use strict';
+
+/* =========================================================================
+   AK_HOME — Interactions vanilla
+   ========================================================================= */
+(function () {
+  var header = document.getElementById('header');
+  var burger = document.getElementById('burger');
+  var mobileNav = document.getElementById('mobileNav');
+
+  /* --- Header : transparent -> plaster + blur au scroll > 70px --------- */
+  function onScroll() {
+    if (window.scrollY > 70) {
+      header.classList.add('is-scrolled');
+    } else {
+      header.classList.remove('is-scrolled');
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* --- Menu mobile ----------------------------------------------------- */
+  function setMenu(open) {
+    mobileNav.classList.toggle('is-open', open);
+    mobileNav.setAttribute('aria-hidden', open ? 'false' : 'true');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  burger.addEventListener('click', function () {
+    setMenu(!mobileNav.classList.contains('is-open'));
+  });
+  mobileNav.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') { setMenu(false); }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { setMenu(false); }
+  });
+
+  /* --- Scroll reveal (IntersectionObserver + stagger) ------------------ */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          // Stagger sur les enfants directs d'une même grille/section
+          var siblings = el.parentNode ? el.parentNode.querySelectorAll(':scope > .reveal') : [el];
+          var index = Array.prototype.indexOf.call(siblings, el);
+          el.style.transitionDelay = (Math.max(0, index) * 0.08) + 's';
+          el.classList.add('revealed');
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('revealed'); });
+  }
+
+  /* --- Scrollspy : lien actif ------------------------------------------ */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav__link'));
+  var sections = navLinks
+    .map(function (link) {
+      var id = link.getAttribute('href').slice(1);
+      return document.getElementById(id);
+    })
+    .filter(Boolean);
+
+  if ('IntersectionObserver' in window && sections.length) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.id;
+          navLinks.forEach(function (link) {
+            link.classList.toggle('is-active', link.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { threshold: 0.5, rootMargin: '-30% 0px -45% 0px' });
+    sections.forEach(function (s) { spy.observe(s); });
+  }
+
+  /* --- Formulaire : feedback léger (à brancher sur Web3Forms/Formspree) - */
+  var form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      var original = btn.textContent;
+      btn.textContent = 'Merci ! Nous vous recontactons rapidement.';
+      btn.disabled = true;
+      window.setTimeout(function () {
+        btn.textContent = original;
+        btn.disabled = false;
+        form.reset();
+      }, 3200);
+    });
+  }
+})();
+</script>
+</body>
+</html>
